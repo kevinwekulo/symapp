@@ -15,4 +15,14 @@ final class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
+    #[Route('/number', name: 'app_default_number')]
+    public function number(): Response
+    {
+        $number = random_int(0, 100);
+
+        return $this->render('default/number.html.twig', [
+            'number' => $number,
+        ]);
+    }
 }

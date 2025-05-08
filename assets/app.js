@@ -5,5 +5,17 @@
  * which should already be in your base.html.twig.
  */
 import './styles/app.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+import Duck from  './js/duck.js';
+import { Alert } from 'bootstrap';
+
+const duck = new Duck('Waddles');
+duck.quack();
+
+// Manually dismiss the alert after 5 seconds
+setTimeout(() => {
+    const myAlert = document.getElementById('myAlert');
+    const bsAlert = Alert.getOrCreateInstance(myAlert);
+    bsAlert.close();
+  }, 5000);
