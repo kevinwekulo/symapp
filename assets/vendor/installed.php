@@ -1,7 +1,18 @@
 <?php return array (
-  'materialize-css' => 
+  'bootstrap' => 
   array (
-    'version' => '1.0.0',
+    'version' => '5.3.6',
+    'dependencies' => 
+    array (
+      0 => '@popperjs/core',
+    ),
+    'extraFiles' => 
+    array (
+    ),
+  ),
+  '@popperjs/core' => 
+  array (
+    'version' => '2.11.8',
     'dependencies' => 
     array (
     ),
@@ -9,9 +20,9 @@
     array (
     ),
   ),
-  'materialize-css/dist/css/materialize.min.css' => 
+  'bootstrap/dist/css/bootstrap.min.css' => 
   array (
-    'version' => '1.0.0',
+    'version' => '5.3.6',
     'dependencies' => 
     array (
     ),
