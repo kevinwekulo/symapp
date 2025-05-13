@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h1>Passengers</h1>
+
+    <a href="{{ path('app_passenger_new') }}" class="btn btn-primary mb-3">Add New Passenger</a>
+
+    {% if passengers is empty %}
+        <p>No passengers found.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Passenger Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Passport</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for passenger in passengers %}
+                    <tr>
+                        <td>{{ passenger.id }}</td>
+                        <td>{{ passenger.getFirstName }}</td>
+                        <td>{{ passenger.getLastName }}</td>
+                        <td>{{ passenger.getPassport }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PassengerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PassengerRepository::class)]
@@ -21,6 +23,26 @@ class Passenger
 
     #[ORM\Column(length: 255)]
     private ?string $passport = null;
+
+    #[ORM\ManyToOne(inversedBy: 'passengers', cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
+
+    /**
+     * @var Collection<int, Ticket>
+     */
+    #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'passenger')]
+    private Collection $tickets;
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->passport;
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +81,48 @@ class Passenger
     public function setPassport(string $passport): static
     {
         $this->passport = $passport;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ticket>
+     */
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
+    public function addTicket(Ticket $ticket): static
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets->add($ticket);
+            $ticket->setPassenger($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Ticket $ticket): static
+    {
+        if ($this->tickets->removeElement($ticket)) {
+            // set the owning side to null (unless already changed)
+            if ($ticket->getPassenger() === $this) {
+                $ticket->setPassenger(null);
+            }
+        }
 
         return $this;
     }

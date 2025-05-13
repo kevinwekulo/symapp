@@ -19,6 +19,10 @@ class Ticket
     #[ORM\Column]
     private ?int $fare = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tickets', cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Passenger $passenger = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +48,18 @@ class Ticket
     public function setFare(int $fare): static
     {
         $this->fare = $fare;
+
+        return $this;
+    }
+
+    public function getPassenger(): ?Passenger
+    {
+        return $this->passenger;
+    }
+
+    public function setPassenger(?Passenger $passenger): static
+    {
+        $this->passenger = $passenger;
 
         return $this;
     }

@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Passenger {% endblock %}
+
+{% block content %}
+<h1>Create/Edit Passenger</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.first_name) }}
+        {{ form_row(form.last_name) }}
+        {{ form_row(form.passport) }}
+        <button class="btn btn-primary">Submit</button>
+    {{ form_end(form) }}
+{% endblock %}
