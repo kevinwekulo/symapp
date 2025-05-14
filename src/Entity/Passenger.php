@@ -24,7 +24,8 @@ class Passenger
     #[ORM\Column(length: 255)]
     private ?string $passport = null;
 
-    #[ORM\ManyToOne(inversedBy: 'passengers')]
+    #[ORM\ManyToOne(inversedBy: 'passengers', cascade: ['persist'])]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Client $client = null;
 
     /**
@@ -36,6 +37,11 @@ class Passenger
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->passport;
     }
 
     public function getId(): ?int

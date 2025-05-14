@@ -1,0 +1,34 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}All Tickets{% endblock %}
+
+{% block content %}
+    <h1>Tickets</h1>
+
+    <a href="{{ path('app_ticket_new') }}" class="btn btn-primary mb-3">Add New Ticket</a>
+
+    {% if tickets is empty %}
+        <p>No Tickets found.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ticket Id</th>
+                    <th>Ticket Number</th>
+                    <th>Fare</th>
+                    <th>Passenger Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                    <tr>
+                        <td>{{ ticket.id }}</td>
+                        <td>{{ ticket.getTicketNumber }}</td>
+                        <td>{{ ticket.getFare }}</td>
+                        <td><a href="#">{{ ticket.getPassenger }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

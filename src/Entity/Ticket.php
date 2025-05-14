@@ -19,7 +19,7 @@ class Ticket
     #[ORM\Column]
     private ?int $fare = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\ManyToOne(inversedBy: 'tickets', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Passenger $passenger = null;
 

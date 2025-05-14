@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}New Ticket {% endblock %}
+
+{% block content %}
+<h1>Create/Edit Ticket</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.ticket_number) }}
+        {{ form_row(form.fare) }}
+        {{ form_row(form.passenger.first_name)}}
+        {{ form_row(form.passenger.last_name)}}
+        {{ form_row(form.passenger.passport)}}
+        <button class="btn btn-primary">Submit</button>
+    {{ form_end(form) }}
+{% endblock %}
