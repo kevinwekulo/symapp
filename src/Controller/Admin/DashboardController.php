@@ -42,7 +42,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Syfony App');
+            ->setTitle('Symfony App');
     }
 
     public function configureMenuItems(): iterable
@@ -51,11 +51,11 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
             MenuItem::section('Passenger'),
-            MenuItem::linkToCrud('Categories', 'fa fa-tags', Passenger::class),
-            MenuItem::linkToCrud('Blog Posts', 'fa fa-file-text', Client::class),
+            MenuItem::linkToCrud('Client', 'fa fa-tags', Client::class),
+            MenuItem::linkToCrud('Passenger', 'fa fa-file-text', Passenger::class),
 
             MenuItem::section('Tickets'),
-            MenuItem::linkToCrud('Comments', 'fa fa-comment', Ticket::class),
+            MenuItem::linkToCrud('Tickets', 'fa fa-comment', Ticket::class),
         ];
     }
 }
