@@ -22,9 +22,9 @@ class ClientCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            // IdField::new('id'),
             
-            FormField::addFieldset('User Details')->collapsible(),
+            // FormField::addFieldset('User Details')->collapsible(),
             TextField::new('name')->setColumns(6),
             TextField::new('phone')->setColumns(6),
         ];
